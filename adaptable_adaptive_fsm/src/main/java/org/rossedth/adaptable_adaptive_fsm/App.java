@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import org.jeasy.states.api.FiniteStateMachineException;
+import org.rossedth.adaptable_adaptive_fsm.Reasoner_FSM.ILimitReachedEvent;
 import org.rossedth.adaptable_fsm.GraphViz;
 import org.rossedth.adaptable_fsm.RecognizerFSM;
 import org.rossedth.adaptive_logic.AdaptiveLogic;
@@ -86,12 +87,16 @@ class Launcher {
     public static void createAdaptiveLogic(final AdaptiveLogic AL,RecognizerFSM sys_U) {
     	Memory mem= new Memory();
     	Monitor mon=new Monitor_FSM(mem);
-    	Reasoner rea=new Reasoner_FSM(mem);  	
+    	Reasoner rea=new Reasoner_FSM(mem);
     	Selector sel=new Selector_FSM(mem); 
     	Executor ex=new Executor_FSM(mem);
     	
     	AL.loadAdaptiveComponents(mem, mon, rea, sel, ex);   	
     	AL.connect(sys_U);
+
+    	
+    	AdaptiveLogicListener listener=new AdaptiveLogicListener();
+    	listener.setSys_U(AL);
     }
     
 }
