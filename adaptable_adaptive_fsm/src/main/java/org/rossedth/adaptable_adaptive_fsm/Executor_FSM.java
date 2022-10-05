@@ -28,15 +28,6 @@ public class Executor_FSM extends Executor {
 		System.out.println("Commanding Actions from Executor"); 
 		RecognizerFSM recognizer=(RecognizerFSM)this.getSysU();
 		FiniteStateMachine fsm= (FiniteStateMachine)recognizer.getFSM();
-		//		Transition transition = fsm.getLastTransition();
-		//		
-		//		if (transition!=null) {
-		//			System.out.println(transition.toString());
-		//		}
-		//		else {
-		//			System.out.println("There was no transition made");
-		//		}
-		//
 		if (response!=null) {
 			System.out.println("Executor needs to translate the plan and modify the FSM");	
 			FSMAction action=(FSMAction)response.getActions().get(0);
@@ -128,7 +119,7 @@ public class Executor_FSM extends Executor {
 		
 		// This should be another FSMAction, something like "TimeAction" with the parameter
 		int delay=5000;
-		recognizer.getListener().onTimer(delay);
+		recognizer.getTimerListener().onTimer(delay);
 
 		//				System.out.println("STATES ");
 		//				for(State s:sys.getStates()) {
