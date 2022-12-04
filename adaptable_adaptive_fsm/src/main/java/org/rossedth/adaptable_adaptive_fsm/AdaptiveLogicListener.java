@@ -16,7 +16,6 @@ public class AdaptiveLogicListener{
 			
 			@Override
 			public void onLimitReached(String entry, EntryTracker_FSM tracker) {
-				// TODO Auto-generated method stub
 				System.out.println("Entry:"+ entry +" reached the limit of tries, we will ignore its use.");
 				monitor.getBlockedEntries().add(entry);
 			}
